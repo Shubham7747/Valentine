@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Valentine ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #ff4e8a, #ff9ecb);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        color: white;
+        text-align: center;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+        margin-bottom: 30px;
+        animation: fadeIn 2s ease;
+    }
+
+    button {
+        padding: 15px 25px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        margin: 10px;
+        transition: 0.3s;
+    }
+
+    #yesBtn {
+        background: #fff;
+        color: #ff4e8a;
+        box-shadow: 0 0 15px rgba(255,255,255,0.7);
+    }
+
+    #noBtn {
+        background: #222;
+        color: white;
+        position: absolute;
+    }
+
+    #result {
+        display: none;
+        animation: fadeIn 2s ease;
+    }
+
+    img {
+        width: 220px;
+        border-radius: 20px;
+        margin-top: 20px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(20px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* floating hearts */
+    .heart {
+        position: absolute;
+        font-size: 24px;
+        animation: float 5s linear infinite;
+    }
+
+    @keyframes float {
+        from {transform: translateY(100vh); opacity: 1;}
+        to {transform: translateY(-10vh); opacity: 0;}
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container" id="question">
+    <h1>Will you be my Valentine? ❤️</h1>
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No 😢</button>
+</div>
+
+<div id="result">
+    <h1>Yay! You made me the happiest person ❤️</h1>
+    <p>
+        Every moment with you is magical.  
+        Thank you for being in my life.  
+        Happy Valentine’s Day, my love 💕
+    </p>
+
+    <!-- Replace photo.jpg with your picture -->
+    <img src="photo.jpg" alt="Us Together">
+
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const question = document.getElementById("question");
+const result = document.getElementById("result");
+
+/* Move NO button on touch or mouse */
+function moveNo() {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+}
+
+noBtn.addEventListener("touchstart", moveNo);
+noBtn.addEventListener("mouseover", moveNo);
+
+/* YES click */
+yesBtn.onclick = () => {
+    question.style.display = "none";
+    result.style.display = "block";
+    createHearts();
+};
+
+/* Floating hearts animation */
+function createHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 20 + 20 + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 5000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
