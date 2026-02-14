@@ -3,142 +3,311 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Valentine ❤️</title>
+<title>For My Love ❤️</title>
 
 <style>
-    body {
-        margin: 0;
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #ff4e8a, #ff9ecb);
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-        color: white;
-        text-align: center;
-    }
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#ff4e8a,#ff9ecb);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    color:white;
+    text-align:center;
+}
 
-    .container {
-        padding: 20px;
-    }
+/* container */
+.container{padding:20px;max-width:95vw}
 
-    h1 {
-        font-size: 28px;
-        margin-bottom: 30px;
-        animation: fadeIn 2s ease;
-    }
+/* buttons */
+button{
+    padding:14px 24px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    margin:10px;
+}
 
-    button {
-        padding: 15px 25px;
-        font-size: 18px;
-        border: none;
-        border-radius: 30px;
-        cursor: pointer;
-        margin: 10px;
-        transition: 0.3s;
-    }
+#yesBtn{background:white;color:#ff4e8a}
+#noBtn{background:#222;color:white;position:absolute}
 
-    #yesBtn {
-        background: #fff;
-        color: #ff4e8a;
-        box-shadow: 0 0 15px rgba(255,255,255,0.7);
-    }
+/* result section */
+#result{display:none}
 
-    #noBtn {
-        background: #222;
-        color: white;
-        position: absolute;
-    }
+/* slideshow box — mobile friendly */
+#slideshow{
+    width:90vw;
+    max-width:320px;
+    height:60vh;
+    max-height:420px;
+    margin:20px auto;
+    border-radius:20px;
+    overflow:hidden;
+    background:black;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
 
-    #result {
-        display: none;
-        animation: fadeIn 2s ease;
-    }
+#slideshow img{
+    width:100%;
+    height:100%;
+    object-fit:contain;          /* full image visible */
+    transform:scale(1);          /* start normal */
+    transition:transform 5s linear; /* smooth constant zoom */
+    will-change: transform;
+}
 
-    img {
-        width: 220px;
-        border-radius: 20px;
-        margin-top: 20px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.4);
-    }
+/* applied after image loads */
+.zoom{
+    transform:scale(1.12);       /* gentle cinematic zoom */
+}
 
-    @keyframes fadeIn {
-        from {opacity: 0; transform: translateY(20px);}
-        to {opacity: 1; transform: translateY(0);}
-    }
 
-    /* floating hearts */
-    .heart {
-        position: absolute;
-        font-size: 24px;
-        animation: float 5s linear infinite;
-    }
+/* caption */
+#caption{
+    font-size:16px;
+    min-height:40px;
+    padding:0 10px;
+}
 
-    @keyframes float {
-        from {transform: translateY(100vh); opacity: 1;}
-        to {transform: translateY(-10vh); opacity: 0;}
-    }
+/* final proposal screen */
+#proposal{
+    display:none;
+    padding:25px;
+    animation:fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0;transform:translateY(20px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+/* hearts */
+.heart{
+    position:absolute;
+    font-size:22px;
+    animation:float 5s linear infinite;
+}
+
+@keyframes float{
+    from{transform:translateY(100vh);opacity:1}
+    to{transform:translateY(-10vh);opacity:0}
+}
 </style>
 </head>
 
 <body>
 
+<!-- QUESTION -->
 <div class="container" id="question">
     <h1>Will you be my Valentine? ❤️</h1>
     <button id="yesBtn">Yes 💖</button>
     <button id="noBtn">No 😢</button>
 </div>
 
-<div id="result">
-    <h1>Yay! You made me the happiest person ❤️</h1>
-    <p>
-        Every moment with you is magical.  
-        Thank you for being in my life.  
-        Happy Valentine’s Day, my love 💕
-    </p>
+<!-- SLIDESHOW -->
+<div id="result" class="container">
+    <h2>Our Beautiful Memories ❤️</h2>
 
-    <!-- Replace photo.jpg with your picture -->
-    <img src="photo.jpg" alt="Us Together">
+    <div id="slideshow">
+        <img id="slide" src="1.jpg">
+    </div>
 
+    <p id="caption">Our first memory music night ❤️</p>
+    <p style="font-size:13px">(Tap screen to pause / resume)</p>
 </div>
+
+<!-- FINAL PROPOSAL -->
+<div id="proposal" class="container">
+    <h1>My Love… ❤️</h1>
+
+    <p style="line-height:1.7;font-size:18px">
+        Every moment with you has become a memory  
+        I never want to lose.  
+
+        You are my peace, my happiness,  
+        and the most beautiful part of my life.  
+
+        Through every smile, every silence,  
+        every dream…  
+        my heart has only chosen **you**.  
+
+        I don’t promise a perfect life,  
+        but I promise to hold your hand  
+        in every imperfect moment.  
+
+        To love you with trust, patience,  
+        honesty, and forever warmth.  
+
+        So today… with all my heart…  
+
+        <br><br>
+        <b>Will you be mine… forever? 💍</b>
+    </p>
+</div>
+
+<!-- MUSIC -->
+<audio id="song1" src="song1.mp3"></audio> <!-- memory slideshow soft song -->
+<audio id="song2" src="song2.mp3"></audio> <!-- second soft song -->
 
 <script>
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const question = document.getElementById("question");
 const result = document.getElementById("result");
+const proposal = document.getElementById("proposal");
 
-/* Move NO button on touch or mouse */
-function moveNo() {
-    const x = Math.random() * (window.innerWidth - 100);
-    const y = Math.random() * (window.innerHeight - 50);
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+const song1 = document.getElementById("song1");
+const song2 = document.getElementById("song2");
+
+/* RUNNING NO BUTTON */
+function moveNo(){
+    const x=Math.random()*(window.innerWidth-100);
+    const y=Math.random()*(window.innerHeight-50);
+    noBtn.style.left=x+"px";
+    noBtn.style.top=y+"px";
 }
+noBtn.addEventListener("touchstart",moveNo);
+noBtn.addEventListener("mouseover",moveNo);
 
-noBtn.addEventListener("touchstart", moveNo);
-noBtn.addEventListener("mouseover", moveNo);
+/* START EXPERIENCE */
+yesBtn.onclick=()=>{
+    question.style.display="none";
+    result.style.display="block";
 
-/* YES click */
-yesBtn.onclick = () => {
-    question.style.display = "none";
-    result.style.display = "block";
+    song1.play();
+    startSlideshow();
     createHearts();
 };
 
-/* Floating hearts animation */
-function createHearts() {
-    setInterval(() => {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "❤️";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = Math.random() * 20 + 20 + "px";
-        document.body.appendChild(heart);
+/* SONG SEQUENCE */
+song1.onended=()=>song2.play();
+song2.onended=()=>showProposal();
 
-        setTimeout(() => heart.remove(), 5000);
-    }, 300);
+/* IMAGES + CAPTIONS */
+const images=[];
+const captions=[];
+
+for(let i=1;i<=40;i++){ images.push(i+".jpg"); }
+
+/* WRITE PERSONAL CAPTIONS HERE */
+
+
+captions.push(
+"Our first memory music night ❤️",
+"The day I smiled because of you 😊",
+"Little moments, big feelings 💫",
+"Your smile = my happiness 💕",
+"Memories I never want to end 🌙",
+"Kaand ho gaya 🥵",
+"First time beach with you 🤩 Goa ❤️",
+"Leopold's pizza is still unmatched 🍕",
+"Gorgeous you 🥰 slaying in saree",
+"Moments after bad pics 😂",
+"Got along again 😘",
+"Icecream time 🍨-- Guess the spot",
+"Banglore to Satara 🥳",
+"One more tick in bucket list- Love dive 🥰",
+"Unexpected adventure 🚣🏻‍♂️",
+"National importance wali jagah🤸🏻‍♂️cuz queen took a pic here ",
+"Moment he bhai 😘",
+"Ghat has it's moments ❤️",
+"Misplaced from Satara, lovers in black 🖤",
+"In your hands, sunflowers look beautiful 🌻",
+"New phone clicks 🥰",
+"Smile after having favi snack 🍨",
+"Some more random pic 🤩",
+"Shadi me chori chori photo 😂",
+"Bomb in making 🔥 My click",
+"Najar na lage moment 🥰",
+"Your research paid of as always 🍨",
+"Tipsy, naughty and hot 😘 ",
+"Celebrity moment 🥳",
+"Mahabaleshwar, after logn bike ride.. ❤️",
+"I love how my food, loves food 😍",
+"Socializing together 🚣🏻‍♂️",
+"Pasty moment 🍨",
+"Such random dinners were heaven 🥰",
+"Engagement preps 🥳",
+"The best click I have ever clicked 😍",
+"Love for Lehanaga ❤️",
+"My gorgeous bride to be 😍",
+"Weddng shopping wale maze 🌻",
+"Future will be like this, many more moments to come🌙"
+);
+
+while(captions.length<50){
+    captions.push("Another beautiful memory with you ❤️");
+}
+
+let index=0;
+let interval=null;
+let paused=false;
+
+/* SLIDESHOW 5s */
+function startSlideshow(){
+    interval=setInterval(nextSlide,5000);
+    setTimeout(() => document.getElementById("slide").classList.add("zoom"), 100);
+
+}
+
+function nextSlide(){
+     index++;
+
+    if(index >= images.length){
+        clearInterval(interval);
+        result.style.display = "none";
+        showProposal();
+        return;
+    }
+
+    const img=document.getElementById("slide");
+    img.classList.remove("zoom");
+
+    setTimeout(()=>img.classList.add("zoom"),50);
+
+    img.src=images[index];
+    document.getElementById("caption").innerText=captions[index];
+}
+
+/* SHOW PROPOSAL + INSTRUMENTAL */
+function showProposal(){
+    proposal.style.display="block";
+}
+
+/* TAP PAUSE / RESUME */
+document.body.addEventListener("click",()=>{
+    if(result.style.display!=="block") return;
+
+    if(!paused){
+        clearInterval(interval);
+        song1.pause(); song2.pause();
+        paused=true;
+    }else{
+        startSlideshow();
+        if(song2.currentTime>0 && !song2.ended) song2.play();
+        else song1.play();
+        paused=false;
+    }
+});
+
+/* HEARTS */
+function createHearts(){
+    setInterval(()=>{
+        const h=document.createElement("div");
+        h.className="heart";
+        h.innerHTML="❤️";
+        h.style.left=Math.random()*100+"vw";
+        h.style.fontSize=(20+Math.random()*20)+"px";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),5000);
+    },300);
 }
 </script>
 
